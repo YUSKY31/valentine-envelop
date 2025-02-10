@@ -1,0 +1,209 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #fcefee;
+    overflow: hidden;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+.scene {
+    perspective: 1200px;
+    transform-style: preserve-3d;
+    width: 100%;
+    height: 100%;
+}
+.bear-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.bear {
+    position: relative;
+    width: 150px;
+    height: 200px;
+}
+.bear-face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #6c4f3d;
+    border-radius: 50%;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+.ear {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: #6c4f3d;
+    border-radius: 50%;
+    top: -30px;
+}
+.left-ear {
+    left: -30px;
+}
+.right-ear {
+    right: -30px;
+}
+.face {
+    position: absolute;
+    top: 40px;
+    width: 120px;
+    height: 100px;
+    background: #8b6a5a;
+    border-radius: 50%;
+    left: 15px;
+}
+.eye {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #000;
+    border-radius: 50%;
+    top: 30px;
+}
+.left-eye {
+    left: 30px;
+}
+.right-eye {
+    right: 30px;
+}
+.nose {
+    position: absolute;
+    width: 15px;
+    height: 10px;
+    background: #000;
+    top: 50px;
+    left: 50px;
+    border-radius: 50%;
+}
+.mouth {
+    position: absolute;
+    top: 65px;
+    left: 50%;
+    width: 20px;
+    height: 10px;
+    border: 2px solid #000;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    transform: translateX(-50%);
+}
+.arm {
+    position: absolute;
+    top: 100px;
+    width: 50px;
+    height: 20px;
+    background: #6c4f3d;
+    border-radius: 10px;
+    transition: all 1s ease-in-out;
+}
+.left-arm {
+    left: -60px;
+    transform-origin: top right;
+}
+.right-arm {
+    right: -60px;
+    transform-origin: top left;
+}
+.envelope-container {
+    position: relative;
+    cursor: pointer;
+    margin-top: -50px;
+    transform-style: preserve-3d;
+}
+.envelope {
+    position: relative;
+    width: 200px;
+    height: 125px;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+.body {
+    width: 100%;
+    height: 100%;
+    background: red;
+    border: 2px solid #b22222;
+    position: absolute;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    transform: translateZ(5px);
+}
+.flap {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 62.5px;
+    background: red;
+    border: 2px solid #b22222;
+    border-top: none;
+    transform-origin: top center;
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    transition: transform 1s ease-in-out;
+    z-index: 2;
+    transform: translateZ(10px);
+}
+.paper {
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    transform: translate(-50%, 100px) scale(1) translateZ(5px);
+    width: 300%;
+    height: 180px;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    opacity: 0;
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+    z-index: 3;
+}
+.message {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+    line-height: 1.5;
+}
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    overflow: hidden;
+}
+.flying-heart {
+    position: absolute;
+    bottom: 0;
+    width: 25px;
+    height: 25px;
+    background-color: #ff4d6d;
+    clip-path: path("M10,30 A10,10 0 1,1 30,10 A10,10 0 1,1 10,30");
+    animation: fly 5s linear infinite;
+}
+@keyframes fly {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    50% { transform: translateY(-50vh) scale(1.2); }
+    100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+}
+@keyframes left-arm-heart {
+    0% { transform: rotate(0); }
+    100% { transform: rotate(45deg) translate(40px, -20px); }
+}
+@keyframes right-arm-heart {
+    0% { transform: rotate(0); }
+    100% { transform: rotate(-45deg) translate(-40px, -20px); }
+}
+@keyframes left-arm-reset {
+    0% { transform: rotate(45deg) translate(40px, -20px); }
+    100% { transform: rotate(0); }
+}
+@keyframes right-arm-reset {
+    0% { transform: rotate(-45deg) translate(-40px, -20px); }
+    100% { transform: rotate(0); }
+}

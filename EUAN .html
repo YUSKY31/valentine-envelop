@@ -1,0 +1,81 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Valentine Envelope</title>
+    <link rel="stylesheet" href="GALOSO1 .css">
+</head>
+<body>
+    <div class="scene">
+        <div class="bear-container">
+            <div class="bear">
+                <div class="bear-face">
+                    <div class="ear left-ear"></div>
+                    <div class="ear right-ear"></div>
+                    <div class="face">
+                        <div class="eye left-eye"></div>
+                        <div class="eye right-eye"></div>
+                        <div class="nose"></div>
+                        <div class="mouth"></div>
+                    </div>
+                </div>
+                <div class="arms">
+                    <div class="arm left-arm"></div>
+                    <div class="arm right-arm"></div>
+                </div>
+            </div>
+            <div class="envelope-container" onclick="toggleEnvelope()">
+                <div class="envelope">
+                    <div class="flap"></div>
+                    <div class="body"></div>
+                    <div class="paper">
+                        <p class="message">Happy Valentine's Day! ❤️</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hearts-container"></div>
+    </div>
+    <script>
+        let isOpen = false;
+
+        function toggleEnvelope() {
+            const flap = document.querySelector('.flap');
+            const paper = document.querySelector('.paper');
+            const leftArm = document.querySelector('.left-arm');
+            const rightArm = document.querySelector('.right-arm');
+
+            if (!isOpen) {
+                flap.style.transform = 'rotateX(180deg)';
+                paper.style.transform = 'translate(-50%, 150px) scale(1.5)';
+                paper.style.opacity = '1';
+                leftArm.style.animation = 'left-arm-heart 2s ease-in-out forwards';
+                rightArm.style.animation = 'right-arm-heart 2s ease-in-out forwards';
+                createFlyingHearts();
+            } else {
+                flap.style.transform = 'rotateX(0deg)';
+                paper.style.transform = 'translate(-50%, 20px) scale(1)';
+                paper.style.opacity = '0';
+                leftArm.style.animation = 'left-arm-reset 2s ease-in-out forwards';
+                rightArm.style.animation = 'right-arm-reset 2s ease-in-out forwards';
+            }
+            isOpen = !isOpen;
+        }
+
+        function createFlyingHearts() {
+            const container = document.querySelector('.hearts-container');
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement('div');
+                heart.classList.add('flying-heart');
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                heart.style.opacity = Math.random();
+                container.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }
+        }
+    </script>
+</body>
+</html>
